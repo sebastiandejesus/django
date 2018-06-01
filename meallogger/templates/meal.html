@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}<title>Meal</title>{% endblock %}
+
+{% block body %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success">
+        <b-alert show variant="success">{{ message }}</b-alert>
+      </div>
+    {% endfor %}
+  {% endif %}
+  <div class="row">
+    <div class="col">
+      <h1>Meal</h1>
+      <form class="form-group" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Submit</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head %}<title>UserMeals</title>{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <form class="form-inline ml-auto" method="get" action="">
+      <div class="form-group mx-sm-3 mb-2">
+          <label for="filterDate">Filter by date:</label>
+          <input type="date" max="3000-12-31" min="1000-01-01"
+            id="filterDate" class="form-control ml-3" name="req_date">
+      </div>
+      <button type="submit" class="btn btn-dark mb-2">Submit</button>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h1>{{ username }}'s Meals</h1>
+      <table class="table">
+        <caption>Total Calories: {{ total_cals }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Mealtime</th>
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit</th>
+            <th scope="col">Calories</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if meals_list %}
+          {% for meal in meals_list %}
+            <tr>
+              <td></td>
+              <td>{{ meal.mealtime }}</td>
+              <td>{{ meal.item }}</td>
+              <td>{{ meal.quantity }}</td>
+              <td>{{ meal.unit }}</td>
+              <td>{{ meal.calories }}</td>
+              <td>{{ meal.timestamp }}</td>
+              <td>
+                <form class="form-group" method="delete">
+                  <input type="hidden" name="delete" value="{{ meal.id }}">
+                  <button type="submit" class="btn btn-danger btn-sm"
+                    onclick="location.href='/{{ request.user }}';">delete</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

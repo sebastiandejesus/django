@@ -1,0 +1,27 @@
+.navlink-custom>a {
+  padding-right: .5rem;
+  padding-left: .5rem;
+  color: #ffffff;
+}
+
+.navlink-custom>a:hover {
+  color: #BEBEBE;
+}
+
+.navbar-custom {
+  background-color: #563d7c;
+}
+
+table {
+    counter-reset: rowNumber;
+}
+
+table tr > td:first-child {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}

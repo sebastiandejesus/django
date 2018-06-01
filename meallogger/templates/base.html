@@ -1,0 +1,44 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+      crossorigin="anonymous">
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'style.css' %}">
+      {% block head %}<title>Base</title>{% endblock %}
+  </head>
+  <body>
+      <nav class="navbar navbar-dark bg-dark mb-3">
+          <ul class="nav-bar nav navbar-right">
+              <li class="nav-item navbar-brand">MealTracker</li>
+              <li class="nav-item navlink-custom">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+          </ul>
+          <ul class="nav-bar nav navbar-left">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item navlink-custom">
+              <a class="nav-link" href="/{{ request.user }}">My Meals</a>
+            </li>
+            <li class="nav-item navlink-custom">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item navlink-custom">
+              <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+            </li>
+            <li class="nav-item navlink-custom">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+      </nav>
+      <div class="container">
+        {% block body %}
+
+        {% endblock %}
+      </div>
+  </body>
+  </html>
