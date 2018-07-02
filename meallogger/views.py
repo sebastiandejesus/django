@@ -18,8 +18,8 @@ class HomeView(View):
     model = Meal
     form_class = MealForm
     template_name = 'meal.html'
-    APP_ID = '4b0e06e6'
-    APP_KEY = '04be7bbc82e81893bcc718d34f170d26'
+    APP_ID = '{{ api id }}'
+    APP_KEY = '{{ api key }}'
     API_URL = ('https://api.edamam.com/api/nutrition-data?app_id={app_id}'
                '&app_key={app_key}&ingr={qty}%20{unit}%20{item}')
 
